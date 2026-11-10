@@ -1,5 +1,4 @@
 import cronstrue from "cronstrue";
-import { format } from "date-fns";
 import humanizeDuration from "humanize-duration";
 import { useRef } from "react";
 import { rrulestr } from "rrule";
@@ -20,6 +19,7 @@ import {
 } from "@/components/ui/tooltip";
 import { useIsOverflowing } from "@/hooks/use-is-overflowing";
 import { capitalize, cn, intervalToSeconds } from "@/utils";
+import { formatWithTimeFormat } from "@/utils/date";
 
 type DeploymentSchedule = components["schemas"]["DeploymentSchedule"];
 type CronSchedule = components["schemas"]["CronSchedule"];
@@ -131,8 +131,8 @@ const IntervalScheduleBadge = ({
 	const scheduleText = `Every ${humanizeDuration(intervalToSeconds(schedule.interval) * 1000)}`;
 	let detailedScheduleText = `${active ? "" : "(Paused)"} ${scheduleText}`;
 	if (schedule.anchor_date) {
-		detailedScheduleText += ` using ${format(
-			new Date(schedule.anchor_date),
+		detailedScheduleText += ` using ${formatWithTimeFormat(
+			schedule.anchor_date,
 			"MMM do, yyyy 'at' hh:mm:ss aa",
 		)} (${schedule.timezone}) as the anchor date`;
 	}

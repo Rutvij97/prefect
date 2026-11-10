@@ -1,7 +1,7 @@
-import { format } from "date-fns";
 import type { Event } from "@/api/events";
 import { Badge } from "@/components/ui/badge";
 import { Icon } from "@/components/ui/icons";
+import { formatWithTimeFormat } from "@/utils/date";
 import {
 	EventResourceDisplay,
 	EventResourceLink,
@@ -42,8 +42,8 @@ function getResourceName(resource: Record<string, string>): string | null {
 }
 
 export function EventDetailsDisplay({ event }: EventDetailsDisplayProps) {
-	const occurredFormatted = format(
-		new Date(event.occurred),
+	const occurredFormatted = formatWithTimeFormat(
+		event.occurred,
 		"yyyy/MM/dd hh:mm:ss a",
 	);
 

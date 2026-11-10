@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
-import { format, isValid, parseISO } from "date-fns";
+import { isValid, parseISO } from "date-fns";
 import { Suspense } from "react";
 import { buildGetEventQuery, type Event } from "@/api/events";
 import type { components } from "@/api/prefect";
@@ -21,6 +21,7 @@ import {
 	PopoverContent,
 } from "@/components/ui/popover";
 import type { EventSelection } from "@/graphs";
+import { formatWithTimeFormat } from "@/utils/date";
 
 type RelatedResource = components["schemas"]["RelatedResource"];
 
@@ -64,7 +65,7 @@ function formatDateNumeric(date: string | Date): string {
 		return "Invalid date";
 	}
 
-	return format(parsedDate, "yyyy/MM/dd hh:mm:ss a");
+	return formatWithTimeFormat(parsedDate, "yyyy/MM/dd hh:mm:ss a");
 }
 
 function getResourceName(resource: Record<string, string>): string | null {

@@ -15,6 +15,7 @@ import { ColorModeSelect } from "./color-mode-select";
 import { Heading } from "./heading";
 import { ServerSettings } from "./server-settings";
 import { ThemeSwitch } from "./theme-switch";
+import { TimeFormatSelect } from "./time-format-select";
 
 export const SettingsPage = () => {
 	usePageTitle("Settings");
@@ -40,6 +41,7 @@ export const SettingsPage = () => {
 			<Heading version={versionData} />
 			<ThemeSwitch />
 			<ColorModeSelect />
+			<TimeFormatSelect />
 			{canSwitchToV1 && (
 				<UiVersionSwitchCard onSwitch={() => setIsSwitchDialogOpen(true)} />
 			)}

@@ -19,6 +19,7 @@ import { TagBadgeGroup } from "@/components/ui/tag-badge-group";
 import { TagsInput } from "@/components/ui/tags-input";
 import { createColumnHelper, useTable } from "@/lib/tanstack-table";
 import { pluralize } from "@/utils";
+import { isHour12 } from "@/utils/date";
 import { ActionsCell, ValueCell } from "./cells";
 
 const columnHelper = createColumnHelper<components["schemas"]["Variable"]>();
@@ -48,7 +49,7 @@ const createColumns = (
 						hour: "numeric",
 						minute: "numeric",
 						second: "numeric",
-						hour12: true,
+						hour12: isHour12(),
 					})
 					.replace(",", "");
 				return (

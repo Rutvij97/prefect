@@ -14,6 +14,7 @@ import {
 import { Icon } from "@/components/ui/icons";
 import { JsonView } from "@/components/ui/json-view";
 import { cn } from "@/utils";
+import { formatWithTimeFormat } from "@/utils/date";
 import {
 	EventResourceDisplay,
 	EventResourceLink,
@@ -39,7 +40,7 @@ type EventTimelineItemProps = {
 
 function EventTimestamp({ occurred }: { occurred: string }) {
 	const date = new Date(occurred);
-	const formattedTime = format(date, "h:mm:ss a");
+	const formattedTime = formatWithTimeFormat(date, "h:mm:ss a");
 	const formattedDate = format(date, "MMM do, yyyy");
 
 	return (

@@ -1,5 +1,4 @@
 import { CalendarIcon } from "@radix-ui/react-icons";
-
 import {
 	addDays,
 	addSeconds,
@@ -45,6 +44,7 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/utils";
+import { formatWithTimeFormat } from "@/utils/date";
 import { mapValueToRange } from "./date-range-utils";
 
 // Types mirrored from legacy Vue `prefect-design/src/types/dateRange.ts`
@@ -183,7 +183,7 @@ function getDateRangeLabel({
 	const endDateFormat = isSameYear(endDate, new Date())
 		? dateTimeFormat
 		: dateTimeAndYearFormat;
-	return `${format(startDate, startDateFormat)} - ${format(endDate, endDateFormat)}`;
+	return `${formatWithTimeFormat(startDate, startDateFormat)} - ${formatWithTimeFormat(endDate, endDateFormat)}`;
 }
 
 function getDateAroundLabel({
@@ -197,7 +197,7 @@ function getDateAroundLabel({
 		? dateFormat
 		: `${dateFormat} 'at' ${timeFormat}`;
 	const unitLabel = quantity === 1 ? unit : `${unit}s`;
-	return `${quantity} ${unitLabel} around ${format(date, fmt)}`;
+	return `${quantity} ${unitLabel} around ${formatWithTimeFormat(date, fmt)}`;
 }
 
 function getPeriodLabel({ period }: DateRangeSelectPeriodValue): string {

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { cva } from "class-variance-authority";
 import { scaleSymlog } from "d3-scale";
-import { format, formatDistanceStrict } from "date-fns";
+import { formatDistanceStrict } from "date-fns";
 import { Calendar, ChevronRight, Clock } from "lucide-react";
 import type { CSSProperties, ReactNode, RefObject } from "react";
 import {
@@ -18,6 +18,7 @@ import type { components } from "@/api/prefect";
 import { DeploymentIconText } from "@/components/deployments/deployment-icon-text";
 import { ChartContainer, ChartTooltip } from "@/components/ui/chart";
 import { cn } from "@/utils";
+import { formatWithTimeFormat } from "@/utils/date";
 import {
 	Card,
 	CardContent,
@@ -627,7 +628,9 @@ const FlowRunTooltip = ({
 				{startTime && (
 					<span className="flex items-center gap-1">
 						<Calendar className="size-4" />
-						<p className="text-sm">{format(startTime, "yyyy/MM/dd hh:mm a")}</p>
+						<p className="text-sm">
+							{formatWithTimeFormat(startTime, "yyyy/MM/dd hh:mm a")}
+						</p>
 					</span>
 				)}
 				<div>

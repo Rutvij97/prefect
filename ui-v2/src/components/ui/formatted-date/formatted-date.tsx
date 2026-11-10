@@ -1,5 +1,4 @@
-import { format, formatDistanceToNow, isValid, parseISO } from "date-fns";
-
+import { formatDistanceToNow, isValid, parseISO } from "date-fns";
 import {
 	Tooltip,
 	TooltipContent,
@@ -7,6 +6,7 @@ import {
 	TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/utils";
+import { formatWithTimeFormat } from "@/utils/date";
 
 type FormattedDateProps = {
 	date: string | Date | null | undefined;
@@ -53,9 +53,9 @@ export const FormattedDate = ({
 			case "relative":
 				return formatDistanceToNow(parsedDate, { addSuffix: true });
 			case "absolute":
-				return format(parsedDate, "MMM d, yyyy 'at' h:mm a");
+				return formatWithTimeFormat(parsedDate, "MMM d, yyyy 'at' h:mm a");
 			case "timestamp":
-				return format(parsedDate, "yyyy/MM/dd hh:mm:ss a");
+				return formatWithTimeFormat(parsedDate, "yyyy/MM/dd hh:mm:ss a");
 			case "both":
 				return formatDistanceToNow(parsedDate, { addSuffix: true });
 			default:
@@ -64,7 +64,10 @@ export const FormattedDate = ({
 	};
 
 	const formattedText = getFormattedText();
-	const absoluteText = format(parsedDate, "MMMM d, yyyy 'at' h:mm:ss a");
+	const absoluteText = formatWithTimeFormat(
+		parsedDate,
+		"MMMM d, yyyy 'at' h:mm:ss a",
+	);
 	const rawIsoString = typeof date === "string" ? date : date.toISOString();
 
 	const dateElement = <span className={className}>{formattedText}</span>;

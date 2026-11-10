@@ -1,3 +1,5 @@
+import { isHour12 } from "@/utils/date";
+
 /**
  * Utility functions for scatter plot axis formatting and tick generation.
  * These are separated from the component to avoid React Fast Refresh warnings.
@@ -116,6 +118,8 @@ export const createXAxisTickFormatter = () => {
 			return date.toLocaleTimeString(undefined, {
 				hour: "numeric",
 				minute: "2-digit",
+				// Keep the locale's default clock unless a 24-hour clock is preferred.
+				hour12: isHour12() ? undefined : false,
 			});
 		}
 
@@ -124,7 +128,7 @@ export const createXAxisTickFormatter = () => {
 		if (day.getTime() < date.getTime()) {
 			return date.toLocaleTimeString(undefined, {
 				hour: "numeric",
-				hour12: true,
+				hour12: isHour12(),
 			});
 		}
 

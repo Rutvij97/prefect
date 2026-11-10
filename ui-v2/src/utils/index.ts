@@ -1,6 +1,16 @@
 export { calculateBucketSize } from "./calculate-bucket-size";
 export { cn } from "./css";
-export { formatDate, formatDateTimeRelative, getLocalTimezone } from "./date";
+export {
+	applyTimeFormat,
+	formatDate,
+	formatDateTimeRelative,
+	formatWithTimeFormat,
+	getLocalTimezone,
+	getTimeFormatPreference,
+	isHour12,
+	TIME_FORMATS,
+	type TimeFormat,
+} from "./date";
 export {
 	intervalToSeconds,
 	secondsToApproximateString,
